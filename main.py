@@ -14,7 +14,7 @@ def run_simulation(roll_file):
 
     print(f"\nResults for {roll_file}")
     for r in game.results():
-        print(f"{r['name']}: ${r['money']} at position {r['position']}")
+        print(f"{r['name']:10} | Money: ${r['money']:3} | Position: {r['position']}")
 
     print(f"Winner: {game.winner().name}")
 
