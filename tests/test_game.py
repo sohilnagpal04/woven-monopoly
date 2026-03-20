@@ -61,3 +61,14 @@ def test_bankruptcy_occurs():
     bankrupt_players = [p for p in game.players if p.money < 0]
 
     assert len(bankrupt_players) >= 1
+
+#test 6 : Board Wraps Arond (board loops correctly )
+def test_board_wraps_correctly():
+    board = Board("data/board.json")
+    player = Game(board, []).players[0]
+
+    board_size = board.size()
+
+    player.move(board_size + 2, board_size)
+
+    assert player.position == 2
