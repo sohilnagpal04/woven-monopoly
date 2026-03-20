@@ -38,4 +38,15 @@ def test_money_changes_after_game():
 
     assert any(player.money != 16 for player in game.players)
 
+#Test 4 : Winner is valid player
+def test_winner_is_valid_player():
+    board = Board("data/board.json")
+    rolls = load_rolls("data/rolls_1.json")
+
+    game = Game(board, rolls)
+    game.play()
+
+    winner = game.winner()
+
+    assert winner in game.players
 
