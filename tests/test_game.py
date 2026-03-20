@@ -50,3 +50,14 @@ def test_winner_is_valid_player():
 
     assert winner in game.players
 
+#test 5 : Backruptcy Occurs (game ends on bankruptcy)
+def test_bankruptcy_occurs():
+    board = Board("data/board.json")
+    rolls = load_rolls("data/rolls_1.json")
+
+    game = Game(board, rolls)
+    game.play()
+
+    bankrupt_players = [p for p in game.players if p.money < 0]
+
+    assert len(bankrupt_players) >= 1
