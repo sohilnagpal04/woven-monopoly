@@ -8,7 +8,7 @@ class Player:
     def move(self, steps, board_size):
         old_position = self.position
         self.position = (self.position + steps) % board_size
-        passed_go = self.position < old_position
+        passed_go = (old_position + steps) >= board_size
         return passed_go
 
     def buy_property(self, property):
