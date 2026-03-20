@@ -27,3 +27,14 @@ def test_initial_player_state():
     for player in game.players:
         assert player.money == 16
         assert player.position == 0
+
+#Test 3 : Money chanes after game (buying + rent logic)
+def test_money_changes_after_game():
+    board = Board("data/board.json")
+    rolls = load_rolls("data/rolls_1.json")
+
+    game = Game(board, rolls)
+    game.play()
+
+    assert any(player.money != 16 for player in game.players)
+
