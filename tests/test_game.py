@@ -38,3 +38,4 @@ def test_money_changes_after_game():
 
     assert any(player.money != 16 for player in game.players)
 
+
