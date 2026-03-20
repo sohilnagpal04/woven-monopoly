@@ -72,3 +72,19 @@ def test_board_wraps_correctly():
     player.move(board_size + 2, board_size)
 
     assert player.position == 2
+
+#test 7 : Different Roll Files Produce Different Winners
+def test_different_rolls_produce_different_winners():
+    board1 = Board("data/board.json")
+    board2 = Board("data/board.json")
+
+    rolls1 = load_rolls("data/rolls_1.json")
+    rolls2 = load_rolls("data/rolls_2.json")
+
+    game1 = Game(board1, rolls1)
+    game2 = Game(board2, rolls2)
+
+    game1.play()
+    game2.play()
+
+    assert game1.winner().name != game2.winner().name
