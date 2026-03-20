@@ -1,6 +1,7 @@
 import json
 from src.board import Board
 from src.game import Game
+from src.player import Player
 
 
 def load_rolls(file):
@@ -96,3 +97,23 @@ def test_different_rolls_produce_different_winners():
     game2.play()
 
     assert game1.winner().name != game2.winner().name
+
+
+# Test 8: Player passes GO correctly
+def test_player_pass_go():
+    player = Player("Test")
+
+    passed = player.move(10, 9)
+
+    assert passed is True
+    assert player.position == 1
+
+
+# Test 9: Player does not pass GO when within bounds
+def test_player_does_not_pass_go():
+    player = Player("Test")
+
+    passed = player.move(3, 9)
+
+    assert passed is False
+    assert player.position == 3
