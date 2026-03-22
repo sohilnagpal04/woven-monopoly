@@ -1,133 +1,98 @@
-# Woven Monopoly – Deterministic Game Simulation
+# 🎲 Woven Monopoly – Deterministic Game Simulation
 
-A Python implementation of the **Woven coding test** where a simplified Monopoly game is simulated using predefined dice rolls, making the game deterministic.
+This project implements the **Woven Engineering Coding Test**, a simplified Monopoly game where the dice rolls are predefined.
 
-The application loads a board configuration and dice rolls from JSON files, simulates the game according to the rules, and outputs the final results including each player's money, position, and the winner.
+Since the dice rolls are known in advance, the game becomes **deterministic**, meaning the same input always produces the same result.
+
+The game logic is implemented using **object-oriented Python**, and the project also includes a **Streamlit GUI** that visually demonstrates the simulation.
+
+🔗 **Live Application**
+
+https://sohilnagpal.streamlit.app
 
 ---
 
-# Game Rules
+# 🧠 How the Game Works
 
-The game follows these simplified Monopoly rules:
+The simulation loads:
 
-- There are **four players** who take turns in the following order:
-  - Peter
-  - Billy
-  - Charlotte
-  - Sweedal
+- a **board configuration** (`board.json`)
+- a **set of dice rolls** (`rolls_1.json` or `rolls_2.json`)
 
-- Each player starts with **$16**
-- All players start on **GO**
+The game engine simulates turns for all players and calculates:
 
-- When a player **passes GO**, they receive **$1**  
-  *(excluding the starting position)*
+- player movement
+- property purchases
+- rent payments
+- player money balance
+- final winner
 
-- If a player lands on a **property**:
-  - If unowned → the player **must buy it**
-  - If owned → the player **must pay rent**
+---
 
-- If a player owns **all properties of the same colour**, rent is **doubled**
+# 🎮 Game Rules (Simplified)
 
+- Four players take turns in this order:
+  1. Peter
+  2. Billy
+  3. Charlotte
+  4. Sweedal
+
+- Each player starts with **$16** on **GO**
+- Passing **GO** gives the player **$1**
+- Landing on a property:
+  - **Unowned → must buy**
+  - **Owned → pay rent**
+- Owning all properties of the same colour **doubles the rent**
 - The board **wraps around** after the last space
-
-- The game does **not include**:
-  - Chance cards
-  - Jail
-  - Stations
-
 - The game ends when **a player becomes bankrupt**
-
 - The player with the **most money remaining wins**
 
 ---
 
-# Project Structure
+# 📁 Project Structure
 
-```
+```bash
 woven-monopoly/
 │
-├── data/
+├── .devcontainer/            # Development container configuration
+│
+├── data/                     # Game configuration files
 │   ├── board.json
 │   ├── rolls_1.json
 │   └── rolls_2.json
 │
-├── src/
+├── images/                   # Screenshots used in README
+│   ├── cli_output.png
+│   └── gui_screenshot.png
+│
+├── src/                      # Core game logic
 │   ├── board.py
 │   ├── game.py
 │   ├── player.py
 │   └── property.py
 │
-├── tests/
+├── tests/                    # Unit tests
 │   └── test_game.py
 │
-├── app.py
-├── main.py
+├── app.py                    # Streamlit GUI
+├── main.py                   # CLI simulation runner
+│
 ├── requirements.txt
+├── .gitignore
+├── .gitattributes
 └── README.md
 ```
 
 ---
 
-# System Design
+# ⚙️ Installation
 
-```mermaid
-classDiagram
+Clone the repository:
 
-class Game {
-  - players
-  - board
-  - dice_rolls
-  + play()
-  + calculate_rent()
-  + results()
-  + winner()
-}
-
-class Player {
-  - name
-  - money
-  - position
-  - properties
-  + move()
-  + buy_property()
-  + pay_rent()
-  + is_bankrupt()
-}
-
-class Property {
-  - name
-  - price
-  - colour
-  - owner
-  + is_owned()
-}
-
-class Board {
-  - spaces
-  + load()
-  + size()
-}
-
-Game --> Player
-Game --> Board
-Board --> Property
-Player --> Property
+```bash
+git clone https://github.com/sohilnagpal04/woven-monopoly.git
+cd woven-monopoly
 ```
-
----
-
-# How the Simulation Works
-
-1. The board is loaded from `data/board.json`
-2. Dice rolls are loaded from `rolls_1.json` or `rolls_2.json`
-3. Players move according to the dice rolls
-4. Properties are purchased or rent is paid
-5. The game continues until a player becomes bankrupt
-6. The player with the most money remaining is declared the winner
-
----
-
-# Running the Game (CLI)
 
 Install dependencies:
 
@@ -135,32 +100,31 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the simulation:
+---
+
+# ▶️ Run the Game (CLI)
+
+Run the simulation from the command line:
 
 ```bash
 python main.py
 ```
 
-Example output:
-
-```
-Results for rolls_1.json
-
-Peter       | Money: $12 | Position: 4
-Billy       | Money: $10 | Position: 6
-Charlotte   | Money: $14 | Position: 3
-Sweedal     | Money: $9  | Position: 5
-
-Winner: Charlotte
-```
+The program simulates the game using predefined dice roll files.
 
 ---
 
-# Running the GUI (Streamlit)
+# 💻 CLI Output Example
 
-This project also includes a **Streamlit GUI** to visualise the game.
+The CLI simulation runs two roll sequences (`rolls_1.json` and `rolls_2.json`).
 
-Run the interface with:
+![CLI Output](images/cli_output.png)
+
+---
+
+# 🖥️ Run the GUI (Streamlit)
+
+Launch the graphical interface locally:
 
 ```bash
 streamlit run app.py
@@ -168,48 +132,64 @@ streamlit run app.py
 
 The GUI allows you to:
 
-- Start the game simulation
-- Roll dice using predefined roll sets
-- View player turns
-- Track player money and positions
-- See the final winner
+- start the game simulation
+- track player turns
+- view player money and board positions
+- see the final winner
 
 ---
 
-# Testing
+# 🌐 Live Streamlit Demo
 
-Run the tests using **pytest**:
+You can run the hosted application here:
+
+🔗 https://sohilnagpal.streamlit.app
+
+---
+
+# 📸 GUI Preview
+
+Example interface of the Streamlit GUI:
+
+![Monopoly GUI](images/gui_screenshot.png)
+
+---
+
+# 🧪 Testing
+
+Run unit tests using **pytest**:
 
 ```bash
 pytest
 ```
 
-This verifies:
+The tests verify:
 
-- Player movement
-- Property purchasing
-- Rent calculations
-- Bankruptcy detection
-- Correct winner determination
+- player movement
+- property purchasing
+- rent calculations
+- bankruptcy detection
+- correct winner determination
 
 ---
 
-# Technologies Used
+# 🛠 Technologies Used
 
 - Python
-- JSON
 - Streamlit
 - Pytest
+- JSON
 - Object-Oriented Programming
 
 ---
 
-# Author
+# 👤 Author
 
 **Sohil Nagpal**
 
-Software Engineer | IoT Systems | Machine Learning  
-Melbourne, Australia  
+Software Engineer 
+Melbourne, Australia
+Portfolio: https://sohilnagpal.com
 
-GitHub:  
+GitHub  
 https://github.com/sohilnagpal04
