@@ -10,6 +10,10 @@ The game logic is implemented using **object-oriented Python**, and the project 
 
 https://sohilnagpal.streamlit.app
 
+🎥 **Project Walkthrough Video**
+
+https://youtu.be/RzK-e8VxAa8
+
 ---
 
 # 🧠 How the Game Works
@@ -187,9 +191,11 @@ The tests verify:
 
 **Sohil Nagpal**
 
-Software Engineer 
+Software Engineer  
 Melbourne, Australia
-Portfolio: https://sohilnagpal.com
 
-GitHub  
+Portfolio:  
+https://sohilnagpal.com
+
+GitHub:  
 https://github.com/sohilnagpal04
