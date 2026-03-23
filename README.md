@@ -1,6 +1,6 @@
 # 🎲 Woven Monopoly – Deterministic Game Simulation
 
-This project implements the **Woven Engineering Coding Test**, a simplified Monopoly game where the dice rolls are predefined.
+This project implements the **Woven Coding Test**, a simplified Monopoly game where the dice rolls are predefined.
 
 Since the dice rolls are known in advance, the game becomes **deterministic**, meaning the same input always produces the same result.
 
